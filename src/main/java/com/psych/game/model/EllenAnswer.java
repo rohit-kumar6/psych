@@ -17,11 +17,11 @@ public class EllenAnswer extends Auditable {
     @Setter
     private Long id;
 
-    @Id
-    @Getter
-    @Setter
-    @NotBlank
-    private Long q_id;
+//    @Id
+//    @Getter
+//    @Setter
+//    @NotBlank
+//    private Long q_id;
 
     @Getter
     @Setter

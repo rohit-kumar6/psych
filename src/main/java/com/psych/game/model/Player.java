@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "players")
+@Table(name = "admins")
 public class Player extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
