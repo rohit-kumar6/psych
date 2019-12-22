@@ -1,7 +1,7 @@
 package com.psych.game.controller;
 
 import com.psych.game.model.Admin;
-import com.psych.game.repository.adminRepository;
+import com.psych.game.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    private adminRepository adminRepository;
+    private AdminRepository adminRepository;
 
     @GetMapping("/admins")
     public List<Admin> getAlladmins() {

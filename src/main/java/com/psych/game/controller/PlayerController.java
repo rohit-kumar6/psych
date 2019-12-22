@@ -15,33 +15,32 @@ public class PlayerController {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @GetMapping("/admins")
-    public List<Player> getAlladmins() {
+    @GetMapping("/players")
+    public List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
 
-    @PostMapping("/admins")
-    public Player createPlayer(@Valid @RequestBody Player player){
+    @PostMapping("/players")
+    public Player createPlayer(@Valid @RequestBody Player player) {
         return playerRepository.save(player);
     }
 
-    @GetMapping("/admins/{id}")
+    @GetMapping("/players/{id}")
     public Player getPlayerById(@PathVariable(value = "id") Long id) throws Exception {
         return playerRepository.findById(id).orElseThrow(() -> new Exception("something went wrong"));
     }
 
-    @PutMapping("/admins/{id}")
+    @PutMapping("/players/{id}")
     public Player updatePlayer(@PathVariable(value = "id") Long id, @Valid @RequestBody Player player) throws Exception {
         Player p = playerRepository.findById(id).orElseThrow(() -> new Exception("something went wrong"));
         p.setName(player.getName());
         return playerRepository.save(p);
     }
 
-    @DeleteMapping("/admins/{id}")
+    @DeleteMapping("/players/{id}")
     public ResponseEntity<?> deletePlayer(@PathVariable(value = "id") Long id) throws Exception {
         Player p = playerRepository.findById(id).orElseThrow(() -> new Exception("something went wrong"));
         playerRepository.delete(p);
         return ResponseEntity.ok().build();
     }
-
 }
