@@ -4,29 +4,33 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "employees")
-public class Employee extends Auditable{
+@Table(name = "ellen_answers")
+public class EllenAnswer extends Auditable {
+
+    // is there will be id or only q_id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private Long id;
 
+    @Id
     @Getter
     @Setter
     @NotBlank
-    private String name;
+    private Long q_id;
 
     @Getter
     @Setter
     @NotBlank
-    @Email
-    private String email;
+    private String answer;
 
-    // phoneNo
-    // address
+    @Getter
+    @Setter
+    //is voteCount can be Blank
+    @NotBlank
+    private int voteCount;
 }

@@ -3,13 +3,15 @@ package com.psych.game.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "employees")
-public class Employee extends Auditable{
+// is there will be tabel of rounds
+public class Round extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -19,14 +21,6 @@ public class Employee extends Auditable{
     @Getter
     @Setter
     @NotBlank
-    private String name;
+    private Long roundNumber;
 
-    @Getter
-    @Setter
-    @NotBlank
-    @Email
-    private String email;
-
-    // phoneNo
-    // address
 }
