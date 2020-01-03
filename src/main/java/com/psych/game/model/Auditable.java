@@ -12,9 +12,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 // ORM  JPA provide hibernate
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt","updatedAt"}, allowGetters = true)
+// abstract we can't create the object of abstract class
 public abstract class Auditable implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
+    private Long id;
+
     @Column(nullable = false, updatable = false)
     @CreatedDate
     // telling that data is timestamp
@@ -25,7 +33,6 @@ public abstract class Auditable implements Serializable {
 
     @Column(nullable = false)
     @LastModifiedDate
-    // telling that data is timestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Getter
     @Setter

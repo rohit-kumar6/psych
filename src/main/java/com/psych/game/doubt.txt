@@ -1,2 +1,0 @@
-Why we are extending Auditabel class everywhere
-can't we insert id in autitabel

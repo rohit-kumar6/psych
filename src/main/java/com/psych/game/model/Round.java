@@ -4,23 +4,34 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 @Entity
-// is there will be tabel of rounds
+@Table(name = "rounds")
 public class Round extends Auditable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne
     @Getter
     @Setter
-    private Long id;
+    @NotNull
+    private Game game;
+
+    @ManyToOne
+    @Getter
+    @Setter
+    private Question question;
 
     @Getter
     @Setter
-    @NotBlank
-    private Long roundNumber;
+    @NotNull
+    private int roundNumber;
+
+    @ManyToMany
+    @Getter
+    @Setter
+    private Map<Player, PlayerAnswer> playerAnswers;
 
 }

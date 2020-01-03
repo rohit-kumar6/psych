@@ -6,23 +6,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Stats")
+@Table(name = "stats")
 public class Stats extends Auditable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private Long id;
-
+    private long correctAnswers = 0;
     @Getter
     @Setter
-    private long gamePlayed;
-
+    private long getPsychedCount = 0;
     @Getter
     @Setter
-    private Long numPsyched;
-
-    @Getter
-    @Setter
-    private Long numPsychedBy;
+    private long psychedOthersCount = 0;
 }

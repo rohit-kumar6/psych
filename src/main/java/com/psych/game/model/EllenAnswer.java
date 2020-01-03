@@ -1,36 +1,30 @@
 package com.psych.game.model;
 
+import com.psych.game.Constants;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "ellen_answers")
 public class EllenAnswer extends Auditable {
-
-    // is there will be id or only q_id
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne
     @Getter
     @Setter
-    private Long id;
+    private Question question;
 
-//    @Id
-//    @Getter
-//    @Setter
-//    @NotBlank
-//    private Long q_id;
-
-    @Getter
-    @Setter
     @NotBlank
+    @Getter
+    @Setter
+    @Column(length = Constants.MAX_ANSWER_LENGTH)
     private String answer;
 
     @Getter
     @Setter
-    //is voteCount can be Blank
-    @NotBlank
-    private int voteCount;
+    private Long votes = 0L;
 }
