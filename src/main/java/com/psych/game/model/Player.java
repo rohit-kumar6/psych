@@ -1,13 +1,11 @@
 package com.psych.game.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
@@ -29,20 +27,51 @@ public class Player extends Auditable{
     @URL
     private String picURL;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @Getter
     @Setter
-    private Stats stats;
+    private Stats stats = new Stats();
 
-
-    // prevent duplicacy
     @ManyToMany(mappedBy = "players")
+    @JsonIdentityReference
     @Getter
     @Setter
     private List<Game> games;
-    //players_games
-    //player_id,game_id
-    //1 1
-    //1 3
-    //2 1
+
+    private Player(Builder builder) {
+        this.name = builder.name;
+        this.psychFaceURL = builder.psychFaceURL;
+        this.picURL = builder.picURL;
+    }
+
+
+    public Player(){}
+
+    public static final class Builder {
+        private @NotBlank String name;
+        private @URL String psychFaceURL;
+        private @URL String picURL;
+
+        public Builder() {
+        }
+
+        public Player build() {
+            return new Player(this);
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder psychFaceURL(String psychFaceURL) {
+            this.psychFaceURL = psychFaceURL;
+            return this;
+        }
+
+        public Builder picURL(String picURL) {
+            this.picURL = picURL;
+            return this;
+        }
+    }
 }

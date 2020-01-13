@@ -1,6 +1,8 @@
 package com.psych.game.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,6 +13,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.StringIdGenerator.class,
+        property = "id"
+)
 // ORM  JPA provide hibernate
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)

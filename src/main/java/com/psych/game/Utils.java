@@ -1,5 +1,7 @@
 package com.psych.game;
 
+import com.psych.game.model.Question;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -70,5 +72,8 @@ public abstract class Utils {
             gameId = gameId * base + index;
         }
         return gameId;
+    }
+
+    public static Question getRandomQuestion() {
     }
 }

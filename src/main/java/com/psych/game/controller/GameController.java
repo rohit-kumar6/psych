@@ -23,8 +23,6 @@ public class GameController {
 
     @GetMapping("/games/{id}")
     public Game getGameById(@PathVariable(value = "id") Long id) throws Exception {
-        Game game = gameRepository.findById(id).get();
-        System.out.println(game);
         return gameRepository.findById(id).orElseThrow(Exception::new);
 
     }
